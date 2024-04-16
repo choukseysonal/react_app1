@@ -1,0 +1,114 @@
+// import { useState } from 'react';
+// import Button from '@mui/material/Button';
+// import Dialog from '@mui/material/Dialog';
+// import DialogActions from '@mui/material/DialogActions';
+// import DialogContent from '@mui/material/DialogContent';
+// import DialogTitle from '@mui/material/DialogTitle';
+// import TextField from '@mui/material/TextField';
+// import Divider from '@mui/material/Divider';
+
+// // export default function AddDocument({ open, onClose, onAddDocument, idToken  }) {
+//   const [title, setTitle] = useState('');
+//   const [link, setLink] = useState('');
+//   const [error, setError] = useState('');
+
+//   const closeDialog = () => {
+//     onClose();
+//     setError('');
+//   };
+
+//   const handleAddDocument = async () => {
+//     if (title.trim() === '' || link.trim() === '') {
+//       setError('Please fill out all fields');
+//       return;
+//     }
+   
+//     const newDocument = {
+//       title: title,
+//       link: link,
+//       // deleted: false // removed 'deleted' field
+//     };
+    
+//     try {
+//       const response = await fetch('http://192.168.1.20:3400/api/documents', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization': idToken
+//         },
+//         body: JSON.stringify(newDocument)
+//       })
+//       if (!response.ok) {
+//         throw new Error('Failed to add document');
+//       }
+      
+
+//       const responseData = await response.json();
+//       console.log('Document added successfully:', responseData);
+
+//       // Update the newDocument object with the response data
+//       const updatedDocument = { ...newDocument, ...responseData };
+
+//       // Call the provided callback function to inform the parent component about the new document
+//       onAddDocument(updatedDocument);
+
+//       // // Call the provided callback function to inform the parent component about the new document
+//       // onAddDocument(newDocument);
+//     } catch (error) {
+//       console.error('Error adding document:', error);
+//     }
+//     setTitle('');
+//     setLink('');
+//     closeDialog();
+//   };
+  
+//   return (
+//     <>
+//       <Dialog open={open} onClose={onClose} fullWidth>
+//         <DialogTitle>ADD DOCUMENT</DialogTitle>
+//         <Divider />
+//         <DialogContent sx={{ marginBottom: '1rem', padding: '3rem'}}>
+//           <div className="flex-1 mt-1">
+//             <p className="text-slate-300 text-gray-700 text-lg">Title </p>
+//             <TextField
+//               variant="outlined"
+//               label="Document Title-1"
+//               value={title}
+//               onChange={(e) => setTitle(e.target.value)}
+//               fullWidth
+//               margin="dense"
+//               error={error !== ''}
+//               helperText={error && 'Title is required'} // Helper text will only be shown when there's an error
+//               // error={error && title.trim() === ''}
+//               // helperText={error && title.trim() === '' && 'Title is required'}
+//             />
+//           </div>
+//           <div className="flex-1" style={{ marginBottom: '1rem', marginTop: '2rem'}}>
+//             <p className="text-gray-300">Link</p>
+//             <TextField
+//               variant="outlined"
+//               label="http://drive.google.com"
+//               value={link}
+//               onChange={(e) => setLink(e.target.value)}
+//               fullWidth
+//               margin="dense"
+//               error={error !== ''}
+//               helperText={error && 'Link is required'} // Helper text will only be shown when there's an error
+//               // error={error && link.trim() === ''}
+//               // helperText={error && link.trim() === '' && 'Link is required'}
+//             />
+//           </div>
+//         </DialogContent>
+//         <Divider />
+//         <DialogActions sx={{ padding: '1rem' }}>
+//           <Button onClick={closeDialog} variant="outlined">
+//             Cancel
+//           </Button>
+//           <Button variant="contained" onClick={handleAddDocument}>
+//             Add Document
+//           </Button>
+//         </DialogActions>
+//       </Dialog>
+//     </>
+//   );
+// }
